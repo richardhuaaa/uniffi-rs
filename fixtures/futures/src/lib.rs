@@ -108,11 +108,11 @@ pub enum MyError {
 
 // An async function that can throw.
 #[uniffi::export]
-pub async fn fallible_me(do_fail: bool) -> Result<u8, MyError> {
+pub async fn fallible_me(do_fail: bool) -> Result<Arc<Megaphone>, MyError> {
     if do_fail {
         Err(MyError::Foo)
     } else {
-        Ok(42)
+        Ok(Arc::new(Megaphone))
     }
 }
 
